@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="machine" />
+  <arg name="pkg" />
+  <arg name="exe" />
+  <arg name="environment" default="" />
+
+  <node machine="$(arg machine)" pkg="tams_execute" type="execute.sh" name="$(anon remote_launch)" args="'$(arg pkg)' '$(arg exe)' '$(arg environment)'" />
+</launch>
