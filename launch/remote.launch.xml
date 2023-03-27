@@ -1,9 +1,21 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="machine" />
-  <arg name="pkg" />
-  <arg name="exe" />
-  <arg name="environment" default="" />
+  <arg name="pkg" doc="package from which to execute"/>
+  <arg name="exe" doc="executable or launch file of pkg"/>
 
-  <node machine="$(arg machine)" pkg="tams_execute" type="execute.sh" name="$(anon remote_launch)" args="'$(arg pkg)' '$(arg exe)' '$(arg environment)'" />
+  <!--
+    Optionally load a different workspace before attempting execution.
+    Use this when the current/default workspace does not include the package
+    you need, e.g., because it relies on a special venv
+  -->
+  <arg name="workspace" default="" />
+
+  <!--
+    optionally run on a different machine
+    The machine has to be defined in the calling roslaunch file.
+  -->
+  <arg name="machine" default="" doc="machine to run on" />
+
+
+  <node machine="$(arg machine)" pkg="tams_execute" type="execute.sh" name="$(anon tams_execute)" args="'$(arg pkg)' '$(arg exe)' '$(arg workspace)'" />
 </launch>
