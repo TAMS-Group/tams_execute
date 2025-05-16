@@ -18,7 +18,7 @@ if [[ -n "$ws" ]]; then
   eval source $ws/setup.bash
 fi
 
-if [[ "$2" = *.launch ]]; then
+if [[ "$2" = *.launch || "$2" = *.launch.xml ]]; then
   roslaunch "$1" "$2"
 else
   rosrun "$1" "$2"
